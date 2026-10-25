@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parlamentum Market Desk</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#f1f5f4;--sf:#fff;--ink:#0f2b2e;--mu:#5a6f72;--bd:#d6e0de;--ac:#5b3df5;--acs:#ece8ff;--gd:#ffd54a;--gdt:#5c4300;--up:#12804a;--dn:#c0352b;--rail:#0f2b2e;--rt:#dcebe8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1517;--sf:#142124;--ink:#e6f0ee;--mu:#93a9ab;--bd:#243538;--ac:#a595ff;--acs:#262046;--gdt:#ffe38a;--up:#4fcf8a;--dn:#ff7d72;--rail:#071012;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1517;--sf:#142124;--ink:#e6f0ee;--mu:#93a9ab;--bd:#243538;--ac:#a595ff;--acs:#262046;--gdt:#ffe38a;--up:#4fcf8a;--dn:#ff7d72;--rail:#071012;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif}
+.shell{display:grid;grid-template-columns:190px 1fr;min-height:100vh}
+aside{background:var(--rail);color:var(--rt);padding:22px 12px;position:sticky;top:0;height:100vh;align-self:start}
+aside b{display:block;font-size:20px;font-weight:800;line-height:1.1;margin:0 8px 22px}
+aside b small{display:block;font-weight:400;font-size:12px;opacity:.7;margin-top:4px}
+aside button{display:block;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;padding:10px 12px;border-radius:10px;cursor:pointer}
+aside button[aria-current=page]{background:var(--ac);color:#fff;font-weight:600}
+main{padding:0 20px 40px;min-width:0}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;border-bottom:1px solid var(--bd);margin-bottom:18px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+label{display:block;font-size:12px;color:var(--mu)}
+input,select,textarea{width:100%;margin-top:3px;padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--sf);color:var(--ink);font:inherit}
+input:focus-visible,select:focus-visible,button:focus-visible,textarea:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+h2{font-size:20px;font-weight:800;margin:6px 0 4px}
+.mu{color:var(--mu);font-size:13px;margin:0 0 12px}
+section{display:none}section.on{display:block}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.row{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}.row>label{flex:1 1 150px}
+button{font:inherit;cursor:pointer}
+.b{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:9px 14px;font-weight:600}
+.l{background:none;border:1px solid var(--bd);color:var(--mu);border-radius:8px;padding:8px 11px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;color:var(--mu);font-weight:600;padding:6px;border-bottom:2px solid var(--bd);white-space:nowrap}
+td{padding:6px;border-bottom:1px solid var(--bd)}
+td input{margin:0;min-width:74px;padding:6px}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.up{color:var(--up)}.dn{color:var(--dn)}
+.out{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:12px}
+.k{background:var(--acs);border-radius:10px;padding:10px 12px}.k span{display:block;font-size:12px;color:var(--mu)}.k b{font-size:20px;font-variant-numeric:tabular-nums}
+.k.hi{background:var(--ac)}.k.hi span,.k.hi b{color:#fff}
+.g{background:var(--gd);color:var(--gdt);border-radius:5px;padding:0 5px;font-weight:700;font-size:12px;margin-left:3px}
+.inp{display:grid;grid-template-columns:2fr 1fr auto;gap:6px;margin-top:6px}.inp input{margin:0}
+.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-top:14px}.hero>div{border-radius:14px;padding:16px}.hero>div:first-child{background:var(--ac);color:#fff}.vd{background:var(--acs)}.hero span,.hero small{display:block;font-size:12px;opacity:.85}.hero b{display:block;font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;margin:2px 0}.hero b.up{color:var(--up)}.hero b.dn{color:var(--dn)}
+.ladder{margin-top:16px}.lr{display:grid;grid-template-columns:130px 1fr 90px;gap:10px;align-items:center;margin:9px 0;font-size:13px}.lr b{text-align:right;font-variant-numeric:tabular-nums}.lt{position:relative;height:14px;background:var(--bg);border-radius:7px}.lt i{display:block;height:100%;border-radius:7px;background:var(--mu)}.lt i.up{background:var(--up)}.lt i.dn{background:var(--dn)}.lt i.be{background:var(--ac)}.lt u{position:absolute;top:-4px;bottom:-4px;border-left:2px dashed var(--ink);text-decoration:none}
+@media(max-width:700px){.hero{grid-template-columns:1fr}.lr{grid-template-columns:92px 1fr 74px}}
+.grp{background:var(--sf);border:1px solid var(--bd);border-radius:14px;margin-bottom:10px;padding:0 14px}.grp>summary{padding:14px 0;cursor:pointer;font-size:16px}.grp[open]>summary{border-bottom:1px solid var(--bd);margin-bottom:12px}.grp .card{background:var(--bg)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.chip{background:var(--sf);border:1px solid var(--bd);color:var(--ink);border-radius:99px;padding:7px 14px}.chip[aria-pressed=true]{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.tag{font-size:12px;font-weight:600;padding:2px 7px;border-radius:99px;background:var(--acs);color:var(--ac)}
+@media(max-width:700px){.shell{display:block}
+aside{position:fixed;inset:auto 0 0 0;height:auto;top:auto;z-index:20;display:flex;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));overflow-x:auto}
+aside b{display:none}aside button{text-align:center;padding:9px 10px;font-size:13px;white-space:nowrap}
+main{padding:0 12px 90px}.bar{grid-template-columns:1fr 1fr;gap:6px}}
+</style></head>
+<body><div class="shell">
+<aside><b>Parlamentum<small>Market desk</small></b>
+<button data-p="res">Tracker</button><button data-p="prices">Prices</button><button data-p="be">Break-even</button><button data-p="rec">Recipes</button><button data-p="pl">Plants</button><button data-p="log">Trade log</button><button data-p="sh">Share</button></aside>
+<main>
+<div class="bar">
+<label>Dollars per 1 gold<input type="number" step="any" min="0" data-s="rate"></label>
+<label>Income tax (%)<input type="number" step="any" min="0" data-s="inc"></label>
+<label>Production tax (%)<input type="number" step="any" min="0" data-s="prod"></label>
+<label>Profit margin over market (%)<input type="number" step="any" min="0" data-s="mk" placeholder="e.g. 5 or 10"></label>
+</div>
+
+<section id="s-res"><h2>Resource tracker</h2>
+<p class="mu">Pick a resource. Global prices are in gold, local prices in dollars. Everything you type stays on this device.</p>
+<div id="rs-chips" class="chips"></div><div id="rs-body"></div></section>
+
+<section id="s-prices"><h2>Prices</h2>
+<p class="mu">Global prices are in gold, local prices in dollars. Value, best market and best trade are worked out for you.</p>
+<div class="card"><div class="row"><label>New item<input id="n-name" placeholder="e.g. Iron"></label><button class="b" data-a="addItem">Add item</button></div></div>
+<div class="card tw"><table><thead><tr><th>Item</th><th>Global <span class="g">G</span></th><th>Local $</th><th>Held</th><th class="num">Value <span class="g">G</span></th><th>Best market</th><th class="num">Best trade</th><th class="num">List price <span class="g">G</span></th><th class="num">Buy at or below <span class="g">G</span></th><th class="num">Sell at or above <span class="g">G</span></th><th>Alert</th><th>Trend</th><th></th></tr></thead><tbody id="p-body"></tbody></table></div>
+<p class="mu">Value uses the best market after income tax. Best trade buys cheap, sells dear and takes income tax off the sale. Import and export taxes are not included. Buy at or below is the most you can pay in the cheaper market and still earn your profit margin after income tax by selling in the dearer one. Sell at or above is your average logged buy cost, or the cheapest market price if you have no log, plus your margin and income tax. Buy now shows when the cheapest market is at or below the buy price. Sell now shows when you hold units and the best market is at or above the sell price.</p></section>
+
+<section id="s-be"><h2>Break-even</h2>
+<p class="mu">Enter what you bought and paid. Pick a tracked item to compare with live prices and see what you can craft.</p>
+<div class="card"><div class="grid">
+<label>Item<select id="b-it"></select></label>
+<label>Units bought<input id="b-q" type="number" step="any" min="0"></label>
+<label>Price paid per unit, gold <span class="g">G</span><input id="b-pg" type="number" step="any" min="0"></label>
+<label>Price paid per unit, dollars<input id="b-pu" type="number" step="any" min="0"></label>
+</div><div class="row" style="margin-top:8px"><button class="l" data-a="useLog">Use my log’s net holdings and average cost</button></div>
+<div class="out" id="b-out"></div></div>
+<div class="card tw"><h2 style="font-size:16px">Craft it instead of selling raw</h2><table><thead><tr><th>Make into</th><th class="num">Used per batch</th><th class="num">Batches (left over)</th><th class="num">Sell for at least</th><th class="num">Global price</th><th class="num">Local price</th><th class="num">Profit at best market</th><th class="num">Versus selling raw</th></tr></thead><tbody id="b-rec"></tbody></table><p class="mu" style="margin:10px 0 0">Each tier is compared with selling all your units raw. Versus selling raw counts any leftover units sold raw, so both routes use everything you bought. Best route marks the highest profit.</p></div></section>
+
+<section id="s-rec"><h2>Recipes</h2>
+<p class="mu">Inputs are bought at the cheaper market. Crafted goods lose income tax and production tax from the sale price.</p>
+<div class="row" style="margin-bottom:12px"><button class="b" data-a="recAdd">New recipe</button><button class="l" data-a="recAll" data-v="1">Expand all</button><button class="l" data-a="recAll" data-v="0">Collapse all</button></div><div id="r-list"></div></section>
+
+<section id="s-pl"><h2>Plants</h2>
+<p class="mu">A resource plant costs 100 gold to found. See how fast it pays back and whether building beats buying.</p>
+<div class="card"><div class="grid">
+<label>Resource<select data-pl="item" id="pl-item"></select></label>
+<label>Plants you run<input type="number" step="any" min="0" data-pl="n"></label>
+<label>Output per plant per cycle<input type="number" step="any" min="0" data-pl="out"></label>
+<label>Cycles you will run<input type="number" step="any" min="0" data-pl="cyc"></label></div>
+<div class="out" id="pl-out"></div></div></section>
+
+<section id="s-log"><h2>Trade log</h2>
+<div class="card"><div class="grid">
+<label>Type<select id="l-t"><option value="buy">Buy</option><option value="sell">Sell</option></select></label>
+<label>Item<input id="l-i" list="dl"></label><label>Units<input id="l-q" type="number" step="any" min="0"></label>
+<label>Price each<input id="l-p" type="number" step="any" min="0"></label>
+<label>Currency<select id="l-c"><option value="g">Gold</option><option value="u">Dollars</option></select></label></div>
+<div class="row" style="margin-top:8px"><button class="b" data-a="logAdd">Add trade</button><button class="l" data-a="applyHold">Set held units from this log</button></div></div>
+<div class="card tw"><h2 style="font-size:16px">Net holdings</h2><table><thead><tr><th>Item</th><th class="num">Net units</th><th class="num">Average buy cost <span class="g">G</span></th></tr></thead><tbody id="l-net"></tbody></table></div>
+<div class="card tw"><table><thead><tr><th>Type</th><th>Item</th><th class="num">Units</th><th class="num">Price each</th><th class="num">Total</th><th></th></tr></thead><tbody id="l-body"></tbody></table></div></section>
+
+<section id="s-sh"><h2>Share and backup</h2>
+<div class="card"><div class="row"><button class="b" data-a="csv">Export CSV</button><button class="l" data-a="copy">Copy text</button><button class="l" data-a="bkx">Export backup</button><button class="l" data-a="bki">Import backup</button></div>
+<textarea id="sh-t" rows="9" style="margin-top:10px" aria-label="Export or import text"></textarea></div></section>
+</main></div>
+<datalist id="dl"></datalist>
+<script>
+const K='parlamentum-desk-v2',PLANT=100;
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let S;try{S=JSON.parse(localStorage.getItem(K))}catch(x){}
+if(!S||!Array.isArray(S.items))S={rate:1,inc:0,prod:0,items:[],rec:[],pl:{item:'',n:'',out:'',cyc:10},log:[],page:'prices'};
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(x){}};
+if(S.mk==null)S.mk=5;
+const n=v=>parseFloat(v)||0,has=v=>v!==''&&v!=null&&!isNaN(parseFloat(v));
+const f=(x,d=3)=>isFinite(x)?(+x).toLocaleString(undefined,{maximumFractionDigits:d}):'–';
+const uid=()=>Math.random().toString(36).slice(2,9);
+const e=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cls=v=>v>0?'up':v<0?'dn':'';
+const G='<span class="g">G</span>';
+const card=(l,v,c,hi)=>`<div class="k${hi?' hi':''}"><span>${l}</span><b class="${hi?'':c||''}">${v}</b></div>`;
+const rate=()=>n(S.rate)||1,inc=()=>n(S.inc)/100,prd=()=>n(S.prod)/100;
+const find=nm=>S.items.find(i=>i.n.trim().toLowerCase()===String(nm).trim().toLowerCase());
+const gP=it=>has(it.g)?n(it.g):null,lP=it=>has(it.u)?n(it.u)/rate():null;
+const pr=it=>it?[gP(it),lP(it)].filter(v=>v!=null):[];
+const cheap=it=>{const a=pr(it);return a.length?Math.min(...a):NaN};
+const best=it=>{const a=pr(it);return a.length?Math.max(...a):NaN};
+const cheapN=nm=>cheap(find(nm));
+const spark=p=>{p=p.slice(-20);if(p.length<2)return'';const mn=Math.min(...p),r=Math.max(...p)-mn||1;return `<svg width="64" height="20" viewBox="0 0 64 20" aria-hidden="true"><polyline fill="none" stroke="currentColor" stroke-width="1.5" points="${p.map((v,i)=>(i*64/(p.length-1)).toFixed(1)+','+(18-(v-mn)/r*16).toFixed(1)).join(' ')}"/></svg>`};
+
+/* navigation */
+function show(p){S.page=p;save();$$('[data-s]').forEach(i=>i.value=S[i.dataset.s]??'');
+ $$('aside button').forEach(b=>b.dataset.p===p?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current'));
+ $$('section').forEach(s=>s.classList.toggle('on',s.id==='s-'+p));
+ ({res:rRes,prices:rP,be:rBsel,rec:rR,pl:rPl,log:rL,sh:()=>{}})[p]();opts();recalc()}
+const opts=()=>{$('#dl').innerHTML=S.items.map(i=>`<option value="${e(i.n)}">`).join('');
+ for(const [id,v] of [['#b-it',$('#b-it').value],['#pl-item',S.pl.item]]){const s=$(id);s.innerHTML=(id==='#b-it'?'<option value="">None</option>':'')+S.items.map(i=>`<option value="${i.id}">${e(i.n)}</option>`).join('');s.value=v||''}};
+
+/* prices */
+function rP(){$$('[data-s]').forEach(i=>i.value=S[i.dataset.s]??'');
+ $('#p-body').innerHTML=S.items.map(it=>{const d=k=>`data-it="${it.id}:${k}" value="${e(it[k])}"`;
+ return `<tr><td><input ${d('n')} aria-label="Item"></td><td><input type="number" step="any" ${d('g')} aria-label="Global price"></td><td><input type="number" step="any" ${d('u')} aria-label="Local price"></td><td><input type="number" step="any" ${d('held')} aria-label="Held"></td><td class="num" id="c1-${it.id}"></td><td id="c2-${it.id}"></td><td class="num" id="c3-${it.id}"></td><td class="num" id="c6-${it.id}"></td><td class="num" id="c7-${it.id}"></td><td class="num" id="c8-${it.id}"></td><td id="c4-${it.id}"></td><td id="c5-${it.id}"></td><td><button class="l" data-a="delItem" data-id="${it.id}" aria-label="Remove">✕</button></td></tr>`}).join('')||'<tr><td colspan="13" class="mu">No items yet. Add your first one above.</td></tr>'}
+function cells(it){const g=gP(it),l=lP(it),b=best(it),c=cheap(it),k=1-inc(),$c=(i,h)=>{const el=$(`#c${i}-${it.id}`);if(el)el.innerHTML=h};
+ $c(1,f(n(it.held)*b*k));$c(2,g!=null&&l!=null?(g>=l?'Global':'Local'):g!=null?'Global':l!=null?'Local':'–');
+ const tr=g!=null&&l!=null?Math.max(g,l)*k-Math.min(g,l):NaN;$c(3,`<span class="${cls(tr)}">${f(tr)}</span>`);
+ const mkp=1+n(S.mk)/100,o=net()[it.n.trim().toLowerCase()],ac=o&&o.bq?o.bc/o.bq:c,buyAt=k>0&&isFinite(b)?b*k/mkp:NaN,sellAt=k>0&&isFinite(ac)?ac*mkp/k:NaN,two=x=>isFinite(x)?f(x,4)+'<br><span class="mu">$'+f(x*rate(),2)+'</span>':'–';
+ $c(7,two(buyAt));$c(8,two(sellAt));let a='';if(isFinite(buyAt)&&c<=buyAt)a+='<span class="tag">Buy now</span> ';if(n(it.held)>0&&isFinite(sellAt)&&b>=sellAt)a+='<span class="tag">Sell now</span>';$c(4,a);
+ $c(5,spark((it.h||[]).map(x=>x.p)));$c(6,f(b*(1+n(S.mk)/100)))}
+
+/* break-even */
+function rBsel(){opts();if(!$('#b-it').value&&S.sel)$('#b-it').value=S.sel}
+function tagBest(){const r=[...$$('#b-rec tr[data-dl]')].filter(x=>isFinite(+x.dataset.dl));if(!r.length)return;const m=r.reduce((a,c)=>+c.dataset.dl>+a.dataset.dl?c:a),t=+m.dataset.dl>0?m:$('#b-rec tr');t.querySelector('td').insertAdjacentHTML('beforeend',' <span class="tag">Best route</span>')}
+let bEd='g';const gd=x=>f(x,2)+' G · $'+f(x*rate(),2);
+function bPg(){const g=$('#b-pg'),u=$('#b-pu'),R=rate();if(bEd==='u'){const v=has(u.value)?n(u.value)/R:'';g.value=v===''?'':+v.toFixed(5);return n(v)}
+ const v=has(g.value)?n(g.value):'';u.value=v===''?'':+(v*R).toFixed(4);return n(v)}
+function rB(){const it=S.items.find(i=>i.id===$('#b-it').value),q=n($('#b-q').value),pg=bPg(),tot=q*pg,k=1-inc(),min=k>0?pg/k:NaN,b=it?best(it):NaN,pf=q*b*k-tot;
+ $('#b-out').innerHTML=(()=>{const mk=n(S.mk)/100,lst=b*(1+mk),gp=it?gP(it):null,lp=it?lP(it):null,pff=x=>x==null?null:q*x*k-tot,pG=pff(gp),pL=pff(lp),pLs=isFinite(lst)?q*lst*k-tot:null,
+  bp=Math.max(pG??-Infinity,pL??-Infinity),vd=!isFinite(bp)?'Add market prices for a verdict':bp>=0?'Profitable at the best market':'Loss at the best market',
+  pm=x=>x==null||!isFinite(x)?'–':`<span class="${cls(x)}">${gd(x)}</span>`,
+  rows=[['Break-even',min,'be'],['Global market',gp],['Local market',lp],['List price, +'+f(n(S.mk))+'%',isFinite(lst)?lst:null]].filter(r=>r[1]!=null&&isFinite(r[1])),mx=Math.max(...rows.map(r=>r[1]),0)||1;
+  return `<div class="hero"><div><span>Break-even sell price, per unit</span><b>${gd(min)}</b><small>after ${f(n(S.inc),2)}% income tax</small></div><div class="vd"><span>${vd}</span><b class="${cls(bp)}">${isFinite(bp)?gd(bp):'–'}</b><small>total profit or loss</small></div></div>
+<div class="ladder">${rows.map(r=>`<div class="lr"><span>${r[0]}</span><div class="lt"><i class="${r[2]||(r[1]>=min?'up':'dn')}" style="width:${r[1]/mx*100}%"></i><u style="left:${min/mx*100}%"></u></div><b>${f(r[1],3)} G</b></div>`).join('')}<p class="mu">Bars show the price per unit in gold. The dashed line is your break-even price: green bars clear it and red bars fall short.</p></div>
+<div class="out">${card('Total spent',gd(tot))+card('Profit at global market',pm(pG))+card('Profit at local market',pm(pL))+card('Profit at list price',pm(pLs))}</div>`})();
+ const rs=it?S.rec.filter(r=>r.inp.some(i=>i.n.trim().toLowerCase()===it.n.trim().toLowerCase())):[];
+ const rawRow=`<tr><td><b>Sell raw ${e(it.n)}</b></td><td class="num">–</td><td class="num">${f(q)} sold</td><td class="num">${gd(min)}</td><td class="num">${gP(it)!=null?gd(gP(it)):'—'}</td><td class="num">${lP(it)!=null?'$'+f(n(it.u),2)+' · '+f(lP(it),2)+' G':'—'}</td><td class="num ${cls(pf)}">${isFinite(pf)?gd(pf):'—'}</td><td class="num mu">Baseline</td></tr>`;
+ $('#b-rec').innerHTML=(rs.length?rawRow:'')+rs.map(r=>{const x=r.inp.find(i=>i.n.trim().toLowerCase()===it.n.trim().toLowerCase()),per=n(x.q),bt=per?Math.floor(q/per):0,left=q-bt*per,amt=n(r.amt)||1,oth=r.inp.filter(i=>i!==x).reduce((s,i)=>s+n(i.q)*cheapN(i.n),0),cost=per*pg+oth,out=find(r.out),k2=1-inc()-prd(),bo=out?best(out):NaN,be=k2>0?cost/(amt*k2):NaN,p=bt*(amt*bo*k2-cost),dl=p+left*(b*k-pg)-pf;
+  return `<tr data-dl="${dl}"><td>${e(r.out)}</td><td class="num">${f(per)}</td><td class="num">${bt} (${f(left)} left)</td><td class="num">${gd(be)}</td><td class="num">${out&&gP(out)!=null?gd(gP(out)):'—'}</td><td class="num">${out&&lP(out)!=null?'$'+f(n(out.u),2)+' · '+f(lP(out),2)+' G':'—'}</td><td class="num ${cls(p)}">${isFinite(p)?gd(p):'—'}</td><td class="num ${cls(dl)}">${isFinite(dl)?(dl>=0?'+':'')+gd(dl):'—'}</td></tr>`}).join('')||'<tr><td colspan="8" class="mu">No recipes use this item yet.</td></tr>';tagBest()}
+
+/* recipes */
+const TYPES=['Factory','Light industry','Heavy industry'];
+function rR(){const fam=r=>r.out.replace(/\s*T\d+$/,'').trim()||'New recipe',fams=[...new Set(S.rec.map(fam))];$('#r-list').innerHTML=fams.map(t=>{const rs=S.rec.filter(r=>fam(r)===t);
+ return `<details class="grp" data-fam="${e(t)}"${S.open&&S.open[t]?' open':''}><summary><b>${e(t)}</b> <span class="mu">${rs.length>1?'T1 to T'+rs.length+' · ':''}${e(rs[0].type)}</span></summary>`+(rs.map(r=>`<div class="card"><div class="grid"><label>Makes<input list="dl" data-rc="${r.id}:out" value="${e(r.out)}"></label><label>Amount per batch<input type="number" step="any" data-rc="${r.id}:amt" value="${e(r.amt)}"></label><label>Building<select data-rc="${r.id}:type">${TYPES.map(x=>`<option${x===r.type?' selected':''}>${x}</option>`).join('')}</select></label></div>
+ ${r.inp.map((i,x)=>`<div class="inp"><input list="dl" placeholder="Input resource" aria-label="Input resource" data-ri="${r.id}:${x}:n" value="${e(i.n)}"><input type="number" step="any" placeholder="Qty" aria-label="Quantity" data-ri="${r.id}:${x}:q" value="${e(i.q)}"><button class="l" data-a="recDelIn" data-id="${r.id}" data-x="${x}" aria-label="Remove input">✕</button></div>`).join('')}
+ <div class="row" style="margin-top:8px"><button class="l" data-a="recAddIn" data-id="${r.id}">Add input</button><button class="l" data-a="recDel" data-id="${r.id}">Delete recipe</button></div><div class="out" id="rr-${r.id}"></div></div>`).join(''))+'</details>'}).join('')||'<p class="mu">No recipes yet.</p>'}
+function calcRec(r){const out=find(r.out),amt=n(r.amt)||1,k=1-inc()-prd();let cost=0,can=Infinity;
+ r.inp.forEach(i=>{cost+=n(i.q)*cheapN(i.n);const it=find(i.n);if(n(i.q))can=Math.min(can,Math.floor(n(it&&it.held)/n(i.q)))});
+ if(!isFinite(can))can=0;const rev=out?amt*best(out)*k:NaN,pf=rev-cost;
+ const el=$('#rr-'+r.id);if(el)el.innerHTML=card('Input cost per batch',f(cost)+' G')+card('Sale after taxes',f(rev)+' G')+card('List price, +'+f(n(S.mk))+'% over market',f(out?best(out)*(1+n(S.mk)/100):NaN)+' G')+card('Profit per batch',f(pf)+' G',cls(pf),1)+card('Batches you can run',can)+card('Your profit',f(can*pf)+' G',cls(pf))}
+
+/* plants */
+function rPl(){$$('[data-pl]').forEach(i=>{if(i.tagName==='INPUT')i.value=S.pl[i.dataset.pl]??''})}
+function calcPl(){const it=S.items.find(i=>i.id===S.pl.item),np=n(S.pl.n),o=n(S.pl.out),cy=n(S.pl.cyc),b=it?best(it):NaN,c=it?cheap(it):NaN,k=1-inc(),
+ per=np*o,val=per*b*k,cost=np*PLANT,pay=o&&b?PLANT/(o*b*k):NaN,earn=val*cy-cost,buy=per*cy*c-cost;
+ $('#pl-out').innerHTML=card('Output per cycle',f(per))+card('Value per cycle, after tax',f(val)+' G')+card('Cost to found',f(cost)+' G')+card('Payback',f(pay,1)+' cycles','',1)+card('Profit if you sell, over '+f(cy,0)+' cycles',f(earn)+' G',cls(earn))+card('Saved versus buying the output',f(buy)+' G',cls(buy))+card('Verdict',buy>0?'Build':'Buy','')}
+
+/* log */
+const gOf=x=>x.cur==='u'?n(x.p)/rate():n(x.p);
+function net(){const m={};S.log.forEach(x=>{const k=x.item.trim().toLowerCase(),o=m[k]=m[k]||{n:x.item,q:0,bq:0,bc:0};if(x.type==='buy'){o.q+=n(x.q);o.bq+=n(x.q);o.bc+=n(x.q)*gOf(x)}else o.q-=n(x.q)});return m}
+function rL(){const m=net();$('#l-net').innerHTML=Object.values(m).map(o=>`<tr><td>${e(o.n)}</td><td class="num">${f(o.q)}</td><td class="num">${f(o.bq?o.bc/o.bq:NaN)}</td></tr>`).join('')||'<tr><td colspan="3" class="mu">Add trades to see net units and average cost.</td></tr>';
+ $('#l-body').innerHTML=S.log.map(x=>`<tr><td>${x.type==='buy'?'Buy':'Sell'}</td><td>${e(x.item)}</td><td class="num">${f(x.q)}</td><td class="num">${f(x.p)} ${x.cur==='u'?'$':'G'}</td><td class="num">${f(n(x.q)*n(x.p))} ${x.cur==='u'?'$':'G'}</td><td><button class="l" data-a="logDel" data-id="${x.id}" aria-label="Remove trade">✕</button></td></tr>`).join('')}
+
+/* recalc */
+const sameN=(a,b)=>String(a).trim().toLowerCase()===String(b).trim().toLowerCase();
+function rRes(){
+ S.rec.forEach(r=>{if(r.out.trim()&&!find(r.out))S.items.push({id:uid(),n:r.out.trim(),g:'',u:'',held:'',ba:'',sa:'',h:[],p:1})});
+ let it=S.items.find(i=>i.id===S.sel&&!i.p);if(!it){it=S.items.find(i=>!i.p);S.sel=it?it.id:''}
+ $('#rs-chips').innerHTML=S.items.filter(i=>!i.p).map(i=>`<button class="chip" data-a="sel" data-id="${i.id}" aria-pressed="${i.id===S.sel}">${e(i.n)}</button>`).join('')||'<p class="mu">Add items on the Prices tab first.</p>';
+ if(!it){$('#rs-body').innerHTML='';return}
+ const d=(x,k)=>`data-it="${x.id}:${k}" value="${e(x[k])}"`,rs=S.rec.filter(r=>r.inp.some(i=>sameN(i.n,it.n)));
+ $('#rs-body').innerHTML=`<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-bottom:14px">
+<div class="card" style="margin:0"><h2 style="font-size:16px">${e(it.n)} price</h2><p class="mu">Per unit</p><label>Global, in gold <span class="g">G</span><input type="number" step="any" ${d(it,'g')}></label><div class="mu" id="rs-gu"></div><label>Local, in dollars<input type="number" step="any" ${d(it,'u')}></label><div class="mu" id="rs-lg"></div></div>
+<div class="card" style="margin:0"><h2 style="font-size:16px">Your ${e(it.n)} held</h2><p class="mu">Units</p><label>Units<input type="number" step="any" ${d(it,'held')}></label></div>
+<div class="card" style="margin:0"><h2 style="font-size:16px">Resource plant payback</h2><p class="mu">100 G ÷ (output × best price)</p><label>Output per plant per cycle<input type="number" step="any" min="0" data-pl="out" value="${e(S.pl.out)}"></label><b id="rs-pay" style="font-size:20px"></b></div></div>
+<div class="out" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:0 0 14px"><div class="k"><span>Holdings value</span><b id="rs-hold" style="font-size:16px"></b></div><div class="k hi"><span>Best use of your ${e(it.n)}</span><b id="rs-best" style="font-size:16px"></b></div></div>
+<div class="card tw"><h2 style="font-size:16px">${e(it.n)} factory profit calculator</h2><table><thead><tr><th>Product</th><th class="num">${e(it.n)} used</th><th>Global price <span class="g">G</span></th><th>Local price $</th><th class="num">Input cost</th><th class="num">Profit per batch</th><th class="num">Batches you can run</th><th class="num">Your profit</th></tr></thead><tbody>${rs.map(r=>{const x=r.inp.find(i=>sameN(i.n,it.n)),o=find(r.out);return `<tr><td>${e(r.out)}</td><td class="num">${f(n(x.q))}</td><td><input type="number" step="any" aria-label="Global price" ${d(o,'g')}></td><td><input type="number" step="any" aria-label="Local price" ${d(o,'u')}></td><td class="num" id="rw1-${r.id}"></td><td class="num" id="rw2-${r.id}"></td><td class="num" id="rw3-${r.id}"></td><td class="num" id="rw4-${r.id}"></td></tr>`}).join('')||'<tr><td colspan="8" class="mu">Nothing is made from this resource yet. Add a recipe on the Recipes tab.</td></tr>'}</tbody></table>
+<p class="mu" style="margin-top:10px">Input cost uses the cheaper market. Profit is after income tax and production tax. Your profit uses whichever market sells highest.</p></div>`}
+function calcRes(){const it=S.items.find(i=>i.id===S.sel);if(!it||!$('#rs-hold'))return;
+ const T=(id,h)=>{const el=$(id);if(el)el.innerHTML=h},k=1-inc(),kc=1-inc()-prd(),R=rate(),hd=n(it.held),g=gP(it),l=lP(it),
+ gl=x=>x==null||!isFinite(x)?'–':f(x,2)+' G · $'+f(x*R,2),pm=(x,m)=>x?(m==='g'?gP(x):lP(x)):null,
+ rs=S.rec.filter(r=>r.inp.some(i=>sameN(i.n,it.n)));
+ T('#rs-gu',g!=null?'≈ $'+f(g*R,2):'');T('#rs-lg',l!=null?'≈ '+f(l,2)+' G':'');
+ T('#rs-hold','Global: '+gl(g!=null?hd*g:null)+'<br>Local: '+gl(l!=null?hd*l:null));
+ const bu=m=>{let bv=pm(it,m)!=null?hd*pm(it,m)*k:-1,bl='Sell raw';rs.forEach(r=>{const x=r.inp.find(i=>sameN(i.n,it.n)),per=n(x.q),po=pm(find(r.out),m);if(per&&po!=null){const v=Math.floor(hd/per)*(n(r.amt)||1)*po*kc;if(v>bv){bv=v;bl=r.out}}});return bv<0?'–':bl+' ≈ '+gl(bv)};
+ T('#rs-best','Global: '+bu('g')+'<br>Local: '+bu('l'));
+ const o0=n(S.pl.out),b0=best(it),pay=o0&&isFinite(b0)?PLANT/(o0*b0*k):NaN;T('#rs-pay',isFinite(pay)?f(pay,1)+' cycles':'–');
+ rs.forEach(r=>{const o=find(r.out),amt=n(r.amt)||1;let cost=0,can=Infinity;
+  r.inp.forEach(i=>{cost+=n(i.q)*cheapN(i.n);const q=find(i.n);if(n(i.q))can=Math.min(can,Math.floor(n(q&&q.held)/n(i.q)))});if(!isFinite(can))can=0;
+  const pg=pm(o,'g'),pl=pm(o,'l'),prG=pg!=null?amt*pg*kc-cost:null,prL=pl!=null?amt*pl*kc-cost:null,mx=Math.max(prG??-Infinity,prL??-Infinity);
+  T('#rw1-'+r.id,gl(cost));
+  T('#rw2-'+r.id,((prG!=null?`<span class="${cls(prG)}">G: ${gl(prG)}</span>`:'')+(prL!=null?`<br><span class="${cls(prL)}">L: ${gl(prL)}</span>`:''))||'—');
+  T('#rw3-'+r.id,can);
+  T('#rw4-'+r.id,isFinite(mx)?`<span class="${cls(mx)}">${gl(can*mx)}</span>`:'—')})}
+function recalc(){S.items.forEach(cells);calcRes();rB();S.rec.forEach(calcRec);calcPl()}
+
+/* events */
+document.addEventListener('input',ev=>{const t=ev.target,d=t.dataset;
+ if(d.s){S[d.s]=t.value;$$('[data-s="'+d.s+'"]').forEach(x=>{if(x!==t)x.value=t.value})}
+ else if(d.it){const[id,k]=d.it.split(':');S.items.find(i=>i.id===id)[k]=t.value}
+ else if(d.rc){const[id,k]=d.rc.split(':');if(k==='type')return;S.rec.find(r=>r.id===id)[k]=t.value}
+ else if(d.ri){const[id,x,k]=d.ri.split(':');S.rec.find(r=>r.id===id).inp[+x][k]=t.value}
+ else if(d.pl){S.pl[d.pl]=t.value}
+ else if(!['b-it','b-q','b-pg','b-pu'].includes(t.id))return;else bEd=t.id==='b-pu'?'u':t.id==='b-pg'?'g':bEd;
+ save();recalc()});
+document.addEventListener('change',ev=>{const t=ev.target,d=t.dataset;
+ if(d.it){const[id,k]=d.it.split(':'),it=S.items.find(i=>i.id===id);if(k==='g'||k==='u'){const b=best(it);if(isFinite(b)){(it.h=it.h||[]).push({t:Date.now(),p:b});save();cells(it)}}if(k==='n')opts()}
+ if(d.rc&&d.rc.endsWith(':type')){const[id]=d.rc.split(':');S.rec.find(r=>r.id===id).type=t.value;save();rR();recalc()}
+ if(d.pl==='item'||t.id==='pl-item'){S.pl.item=t.value;save();calcPl()}});
+document.addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;
+ if(b.dataset.p)return show(b.dataset.p);
+ const a=b.dataset.a,id=b.dataset.id,r=S.rec.find(x=>x.id===id);if(!a)return;
+ if(a==='sel'){S.sel=id;rRes()}
+ if(a==='addItem'){const nm=$('#n-name').value.trim();if(!nm||find(nm))return;S.items.push({id:uid(),n:nm,g:'',u:'',held:'',ba:'',sa:'',h:[]});$('#n-name').value='';rP();opts()}
+ if(a==='delItem'&&confirm('Remove this item?')){S.items=S.items.filter(i=>i.id!==id);rP();opts()}
+ if(a==='recAdd'){S.open=S.open||{};S.open['New recipe']=true;S.rec.push({id:uid(),out:'',amt:1,type:'Factory',inp:[{n:'',q:''}]});rR()}
+ if(a==='recAll'){const on=b.dataset.v==='1';S.open={};$$('#r-list details').forEach(d=>S.open[d.dataset.fam]=on);rR()}
+ if(a==='recDel'&&confirm('Delete this recipe?')){S.rec=S.rec.filter(x=>x!==r);rR()}
+ if(a==='recAddIn'){r.inp.push({n:'',q:''});rR()}
+ if(a==='recDelIn'){r.inp.splice(+b.dataset.x,1);rR()}
+ if(a==='logAdd'){const it=$('#l-i').value.trim();if(!it||$('#l-q').value===''||$('#l-p').value==='')return;S.log.push({id:uid(),type:$('#l-t').value,item:it,q:$('#l-q').value,p:$('#l-p').value,cur:$('#l-c').value});['#l-q','#l-p'].forEach(s=>$(s).value='');rL()}
+ if(a==='logDel'){S.log=S.log.filter(x=>x.id!==id);rL()}
+ if(a==='applyHold'){const m=net();S.items.forEach(i=>{const o=m[i.n.trim().toLowerCase()];if(o)i.held=String(o.q)})}
+ if(a==='useLog'){const it=S.items.find(i=>i.id===$('#b-it').value);const o=it&&net()[it.n.trim().toLowerCase()];if(o){$('#b-q').value=o.q;$('#b-pg').value=o.bq?(o.bc/o.bq):'';bEd='g'}}
+ const csv=()=>['Item,Global (G),Local ($),Held,Best market (G),Value after income tax (G)'].concat(S.items.map(i=>[`"${i.n.replace(/"/g,'""')}"`,i.g,i.u,i.held,f(best(i),4),f(n(i.held)*best(i)*(1-inc()),4)].join(','))).join('\n');
+ if(a==='csv')$('#sh-t').value=csv();
+ if(a==='copy'){const t=csv();$('#sh-t').value=t;try{navigator.clipboard.writeText(t)}catch(x){}}
+ if(a==='bkx')$('#sh-t').value=JSON.stringify(S);
+ if(a==='bki'){try{const d=JSON.parse($('#sh-t').value);if(!Array.isArray(d.items)||!Array.isArray(d.rec)||!Array.isArray(d.log))throw 0;S=d;show('prices')}catch(x){$('#sh-t').value='That backup could not be read. Paste the exact text from an export.'}}
+ save();recalc()});
+if((S.seeded||0)<2){const fresh=!S.items.length,old=S.items,oldRec=S.rec;S.seeded=2;
+ if(fresh){S.rate=27.51;S.inc=0;S.prod=0}
+ const P0={'Raw Iron':['0.07','3','10000'],'Weapon T1':['1.1','28.5',''],'Weapon T4':['7','150','']},T=[1,2,3,4,5],
+ raws=['Raw Grain','Raw Iron','Raw Oil','Raw Cotton','Timber','Coal','Raw Copper'],comps=['Construction Materials','Fuel','Electronics'],
+ fac=[['Food T','Raw Grain',[10,20,35,60,100]],['Weapon T','Raw Iron',[10,20,35,60,100]],['Ticket T','Raw Oil',[25,50,90,150,250]]],
+ ship=[[2,1,1],[4,2,2],[6,4,4],[12,6,6],[20,10,10]],names=[],nr=[],
+ add=(nm,p)=>{names.push(nm);const o=old.find(i=>sameN(i.n,nm))||(fresh&&P0[nm]?{g:P0[nm][0],u:P0[nm][1],held:P0[nm][2]}:{});return Object.assign({id:o.id||uid(),n:nm,g:o.g??'',u:o.u??'',held:o.held??'',ba:o.ba??'',sa:o.sa??'',h:o.h||[]},p?{p:1}:{})};
+ const items=[...raws,...comps].map(nm=>add(nm,0));
+ fac.forEach(f0=>T.forEach(t=>items.push(add(f0[0]+t,1))));
+ T.forEach(t=>items.push(add('Ship T'+t,1)));
+ fac.forEach(f0=>T.forEach((t,i)=>nr.push({id:uid(),out:f0[0]+t,amt:1,type:'Factory',inp:[{n:f0[1],q:f0[2][i]}]})));
+ [['Construction Materials','Raw Iron','Timber'],['Fuel','Coal','Raw Oil'],['Electronics','Raw Copper','Raw Cotton']].forEach(c=>nr.push({id:uid(),out:c[0],amt:1,type:'Light industry',inp:[{n:c[1],q:5},{n:c[2],q:5}]}));
+ T.forEach((t,i)=>nr.push({id:uid(),out:'Ship T'+t,amt:1,type:'Heavy industry',inp:[{n:'Construction Materials',q:ship[i][0]},{n:'Fuel',q:ship[i][1]},{n:'Electronics',q:ship[i][2]}]}));
+ S.items=items.concat(old.filter(i=>!names.some(x=>sameN(x,i.n))&&!sameN(i.n,'Ships')));
+ S.rec=nr.concat(oldRec.filter(r=>!nr.some(x=>sameN(x.out,r.out))));
+ S.page='res';S.sel=(S.items.find(i=>i.id===S.sel&&!i.p)||{}).id;save()}
+if((S.seeded||0)<3){S.seeded=3;const bad=['iron','timber','coal'],isBad=x=>bad.includes(String(x).trim().toLowerCase());
+ S.items=S.items.filter(i=>!isBad(i.n));S.rec.forEach(r=>r.inp=r.inp.filter(i=>!isBad(i.n)));S.rec=S.rec.filter(r=>r.inp.length);
+ S.sel=(S.items.find(i=>i.id===S.sel&&!i.p)||{}).id;save()}
+if((S.seeded||0)<4){S.seeded=4;
+ const P={'Food T1':[0.84,38],'Weapon T1':[0.76,38],'Ticket T1':[1.15,45],'Ship T1':[4.5,250],'Raw Grain':[0.09,2.65],'Raw Iron':[0.07,''],'Raw Oil':[0.08,8],'Raw Cotton':[0.11,''],'Raw Copper':[0.08,''],'Construction Materials':[1,29.7],'Fuel':[1,25],'Electronics':[1,28.5]};
+ Object.keys(P).forEach(nm=>{const it=find(nm);if(!it)return;it.g=String(P[nm][0]);it.u=String(P[nm][1]);it.h=it.h||[];const b=best(it);if(isFinite(b))it.h.push({t:Date.now(),p:b})});save()}
+document.addEventListener('toggle',ev=>{const d=ev.target;if(d.dataset&&d.dataset.fam){S.open=S.open||{};S.open[d.dataset.fam]=d.open;save()}},true);
+if(S.v!==3){S.v=3;
+ const ens=(nm,p)=>{if(!find(nm))S.items.push(p?{id:uid(),n:nm,g:'',u:'',held:'',ba:'',sa:'',h:[],p:1}:{id:uid(),n:nm,g:'',u:'',held:'',ba:'',sa:'',h:[]})};
+ ['Raw Grain','Raw Iron','Raw Oil','Raw Cotton','Timber','Coal','Raw Copper','Construction Materials','Fuel','Electronics'].forEach(x=>ens(x));
+ S.items=S.items.filter(i=>!(sameN(i.n,'Ships')&&!has(i.g)&&!has(i.u)&&!has(i.held)));
+ const add=(out,type,inp)=>{let r=S.rec.find(x=>sameN(x.out,out));if(!r){r={id:uid(),out,amt:1,type,inp:[]};S.rec.push(r)}r.type=type;r.inp=inp.map(a=>({n:a[0],q:String(a[1])}));if(type!=='Light industry')ens(out,1)};
+ const T=[10,20,35,60,100],O=[25,50,90,150,250],C=[2,4,6,12,20],F=[1,2,4,6,10];
+ for(let i=0;i<5;i++){add('Food T'+(i+1),'Factory',[['Raw Grain',T[i]]]);add('Weapon T'+(i+1),'Factory',[['Raw Iron',T[i]]]);add('Tickets T'+(i+1),'Factory',[['Raw Oil',O[i]]]);add('Ship T'+(i+1),'Heavy industry',[['Construction Materials',C[i]],['Fuel',F[i]],['Electronics',F[i]]])}
+ add('Construction Materials','Light industry',[['Raw Iron',5],['Timber',5]]);add('Fuel','Light industry',[['Coal',5],['Raw Oil',5]]);add('Electronics','Light industry',[['Raw Copper',5],['Raw Cotton',5]]);
+ save()}
+show(S.page||'res');
+</script></body></html>
